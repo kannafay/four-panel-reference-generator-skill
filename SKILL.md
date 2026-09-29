@@ -29,7 +29,7 @@ description: "Generate one 2x2 person reference sheet with four consistent chara
 | 位置 | 默认标签 | 默认视角与裁切 |
 | --- | --- | --- |
 | 左上 | `FACE FRONT` | 正面半身，从完整头顶到肚脐附近；肩膀和可见上臂完整。 |
-| 右上 | `FACE SIDE` | 45° 前侧半身，与左上裁切、尺度一致；人物朝成图左侧，鼻尖指向本格左边的中央分隔线，后脑朝右；头和躯干同向，双眼可见。 |
+| 右上 | `FACE SIDE` | 45° 前侧半身，与左上裁切、尺度一致；鼻尖朝成图左侧、指向本格左边的中央分隔线，后脑朝右，人物自身的左脸更明显；头和躯干同向，双眼可见。 |
 | 左下 | `BODY FRONT` | 正面全身，完整头顶至鞋底；自然直立，视线朝相机。 |
 | 右下 | `BODY BACK` | 正背面全身，完整头顶至鞋底；头和躯干直接背向相机，不回头，不露出脸。 |
 
@@ -70,7 +70,7 @@ Framing: {separate portrait and full-body requirements; matching scale within ea
 Leave a little background margin around each subject. Do not crop the required body parts or let the subject cross a divider.
 ```
 
-默认右上视角的描述使用成图坐标：`45-degree front three-quarter view facing image LEFT, nose toward the center divider at this cell's LEFT edge, back of the head toward the RIGHT edge; head and torso face the same way, both eyes visible.` 不用容易混淆的“人物左侧”或“相机向右”。
+默认右上视角同时写明成图方向和人物自身的脸侧：`45-degree front three-quarter view facing image LEFT, nose toward the center divider at this cell's LEFT edge, back of the head toward the RIGHT edge; the subject's own LEFT cheek is more visible; head and torso face the same way, both eyes visible.` 不单独用容易混淆的“左侧脸”或“相机向右”指定朝向。
 
 纯文字路线删去参考图语句。有参考图的路线必须附图。用户自定义规格时替换相应描述，并删除失效的默认方向、裁切、比例、姿态、背景和标签要求。
 
@@ -86,7 +86,7 @@ Leave a little background margin around each subject. Do not crop the required b
 
 1. 一张图、四个等大格子，人物不跨格；标准版整图和每格均为竖版 9:16，细白色十字线居中。用户明确改动规格时按其要求检查。
 2. 四格人物身份、发型、服装颜色、配饰及非对称细节一致。
-3. 四格视角正确；默认右上朝成图左侧，右下为直接背面。
+3. 四格视角正确；默认右上鼻尖朝成图左侧、人物自身左脸更明显，右下为直接背面。
 4. 半身与全身分别满足裁切要求，配对尺度一致，全身图不缺手脚。
 5. 姿态、背景、风格和标签符合最终规格。
 6. 生成工具有可控选项时已选择最高原生分辨率和质量，没有时已在实际提示词中要求最高原生画质；如能获知实际像素尺寸，按实报告。
