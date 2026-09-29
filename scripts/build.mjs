@@ -5,7 +5,11 @@ import { zipSync } from 'fflate';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const skillName = 'four-panel-reference-generator';
-const archivePath = join(root, 'dist', `${skillName}-skill.zip`);
+const { version } = JSON.parse(await readFile(join(root, 'package.json'), 'utf8'));
+if (typeof version !== 'string' || !/^\d+\.\d+\.\d+(?:-[\w.-]+)?(?:\+[\w.-]+)?$/.test(version)) {
+  throw new Error('package.json must contain a valid version number');
+}
+const archivePath = join(root, 'dist', `${skillName}-skill-${version}.zip`);
 const files = [
   'SKILL.md',
   'agents/openai.yaml',

@@ -15,7 +15,7 @@
 
 ## 构建压缩包
 
-在仓库根目录运行 `pnpm install --frozen-lockfile`，然后运行 `pnpm build`。压缩包生成于 `dist/four-panel-reference-generator-skill.zip`；解压后得到 `four-panel-reference-generator/` 目录，可直接放入 `~/.agents/skills/`。压缩包只包含技能文件、说明和许可证，不包含构建工具或依赖。
+在仓库根目录运行 `pnpm install --frozen-lockfile`，然后运行 `pnpm build`。版本号取自 `package.json` 的 `version` 字段，例如 `0.1.0` 会生成 `dist/four-panel-reference-generator-skill-0.1.0.zip`；更新版本号后再次构建即可得到对应的新文件。解压后得到 `four-panel-reference-generator/` 目录，可直接放入 `~/.agents/skills/`。压缩包只包含技能文件、说明和许可证，不包含构建工具或依赖。
 
 ## 许可
 
