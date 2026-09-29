@@ -13,6 +13,10 @@
 
 下载仓库，把包含 `SKILL.md` 的整个目录放入 `~/.agents/skills/four-panel-reference-generator/`（Windows：`%USERPROFILE%\.agents\skills\four-panel-reference-generator\`）。重新打开 Codex 后，附上人物参考图并输入 `$four-panel-reference-generator`。安装位置见 [OpenAI Docs](https://learn.chatgpt.com/docs/build-skills)。
 
+## 构建压缩包
+
+在仓库根目录运行 `pnpm install --frozen-lockfile`，然后运行 `pnpm build`。压缩包生成于 `dist/four-panel-reference-generator-skill.zip`；解压后得到 `four-panel-reference-generator/` 目录，可直接放入 `~/.agents/skills/`。压缩包只包含技能文件、说明和许可证，不包含构建工具或依赖。
+
 ## 许可
 
 [MIT](LICENSE)。

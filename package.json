@@ -1,0 +1,12 @@
+{
+  "name": "four-panel-reference-generator-skill",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/build.test.mjs"
+  },
+  "devDependencies": {
+    "fflate": "0.8.3"
+  }
+}
