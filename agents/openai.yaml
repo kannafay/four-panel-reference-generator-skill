@@ -1,0 +1,3 @@
+interface:
+  display_name: "人物四格参考图生成器"
+  short_description: "生成同一人物的四视角参考图，保持身份与服装结构一致，每次只出一张图"

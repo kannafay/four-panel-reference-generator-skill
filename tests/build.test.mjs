@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { execFile } from 'node:child_process';
-import { mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { basename, dirname, join, resolve } from 'node:path';
 import { test } from 'node:test';
@@ -11,6 +11,10 @@ import { unzipSync } from 'fflate';
 const execFileAsync = promisify(execFile);
 const buildScript = fileURLToPath(new URL('../scripts/build.mjs', import.meta.url));
 const skill = '---\nname: example-skill\ndescription: Example skill.\n---\n\n# Example\n';
+const agentMetadata = `interface:
+  display_name: "人物四格参考图生成器"
+  short_description: "生成同一人物的四视角参考图，保持身份与服装结构一致，每次只出一张图"
+`;
 const build = (cwd) => execFileAsync(process.execPath, [buildScript], { cwd });
 const manifest = (root, values = {}) =>
   writeFile(join(root, 'package.json'), JSON.stringify({
@@ -29,19 +33,23 @@ async function fixture(t) {
   });
   await manifest(root);
   await writeFile(join(root, 'SKILL.md'), skill);
+  await mkdir(join(root, 'agents'));
+  await writeFile(join(root, 'agents', 'openai.yaml'), agentMetadata);
   return root;
 }
 
-test('packages only the skill under its name, with a versioned and reproducible ZIP', async (t) => {
+test('packages the skill and Chinese agent metadata in a versioned and reproducible ZIP', async (t) => {
   const root = await fixture(t);
   await writeFile(join(root, 'README.md'), 'Development documentation');
   await writeFile(join(root, '.env'), 'TEST_ONLY=do-not-package');
+  await writeFile(join(root, 'agents', 'development.txt'), 'Do not package');
 
   await build(root);
   const archive = await readFile(join(root, 'dist', 'example-skill-1.2.3.zip'));
   const entries = unzipSync(archive);
-  assert.deepEqual(Object.keys(entries), ['example-skill/SKILL.md']);
+  assert.deepEqual(Object.keys(entries), ['example-skill/SKILL.md', 'example-skill/agents/openai.yaml']);
   assert.deepEqual(Buffer.from(entries['example-skill/SKILL.md']), Buffer.from(skill));
+  assert.deepEqual(Buffer.from(entries['example-skill/agents/openai.yaml']), Buffer.from(agentMetadata));
 
   await build(root);
   assert.deepEqual(await readFile(join(root, 'dist', 'example-skill-1.2.3.zip')), archive);
@@ -67,6 +75,13 @@ test('rejects unsafe package metadata before creating output', async (t) => {
 test('fails without a skill entrypoint', async (t) => {
   const root = await fixture(t);
   await rm(join(root, 'SKILL.md'));
+  await assert.rejects(build(root), /ENOENT/);
+  await assert.rejects(readdir(join(root, 'dist')), { code: 'ENOENT' });
+});
+
+test('fails without agent metadata before creating output', async (t) => {
+  const root = await fixture(t);
+  await rm(join(root, 'agents', 'openai.yaml'));
   await assert.rejects(build(root), /ENOENT/);
   await assert.rejects(readdir(join(root, 'dist')), { code: 'ENOENT' });
 });

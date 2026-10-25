@@ -16,7 +16,10 @@ if (
 }
 
 const archive = zipSync(
-  { [`${name}/SKILL.md`]: await readFile(join(root, 'SKILL.md')) },
+  {
+    [`${name}/SKILL.md`]: await readFile(join(root, 'SKILL.md')),
+    [`${name}/agents/openai.yaml`]: await readFile(join(root, 'agents', 'openai.yaml')),
+  },
   { level: 9, mtime: new Date(2000, 0, 1) },
 );
 const output = join(root, 'dist', `${name}-${version}.zip`);
