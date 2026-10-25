@@ -1,6 +1,6 @@
 # Four-Panel Character Reference
 
-A portable skill for generating four views of the same character. The instructions in [SKILL.md](SKILL.md) are written in Chinese for review; metadata, documentation, and tooling use English. Requires image generation and, when using reference images, image input support.
+A portable skill for generating four views of the same character. The instructions in [SKILL.md](SKILL.md), generation prompts, metadata, documentation, and tooling use English. Requires image generation and, when using reference images, image input support.
 
 ## Installation and Usage
 

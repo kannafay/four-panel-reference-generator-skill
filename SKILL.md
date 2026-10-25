@@ -3,36 +3,36 @@ name: four-panel-reference-skill
 description: "Create a 2x2 reference sheet of one person for character design and image or video assets. Use for character views, not narrative storyboards or object turnarounds."
 ---
 
-# 人物四格参考图
+# Four-Panel Character Reference
 
-使用图像生成工具，将同一个人物呈现为一张二行二列的参考图。用户明确要求优先于以下默认规则。
+Use an image generation tool to present the same person in one 2x2 reference sheet. Explicit user requests override the defaults below.
 
-## 人物与参考图
+## Character and Reference Images
 
-- 有参考图时，先查看并随生成调用附上，保留人物身份、体型、发型、服装、配饰及非对称细节，重新安排姿态与背景；不要因原图姿势或背景复杂而改用纯文字生成。无参考图或用户明确要求纯文字生成时，按文字描述固定人物外观。
-- 多张参考图互补使用；身份或服装版本冲突且用户未指定时，先确认选择。必要参考图无法访问时，请用户重新附上。
-- 未展示的背面、下装或鞋子可保守补全，四格保持一致，不将补全细节当作原图事实。默认延续参考图风格，纯文字输入默认摄影效果。
+- When reference images are available, inspect and attach them to the generation call. Preserve identity, body type, hair, clothing, accessories, and asymmetric details while rearranging the pose and background. Do not switch to text-only generation because the original pose or background is complex. With no reference image, or when explicitly asked to use text only, establish the appearance from the description.
+- Use multiple references as complementary sources. If identity or outfit versions conflict and the user has not chosen one, clarify which to use. Ask the user to reattach any necessary reference that cannot be accessed.
+- Conservatively complete unseen back details, lower-body clothing, or shoes. Keep these additions consistent across all four panels without presenting them as facts visible in the source. Preserve the reference style by default; use a photographic style for text-only input.
 
-## 默认成图
+## Default Output
 
-- 整图与每格均为竖版 **9:16**。在整图宽、高各 **50%** 处叠加细白色十字线，四格等宽等高，无间隙、外框或额外留白；人物不跨格。
-- 选择工具实际支持的最高原生分辨率和画质；没有对应参数时，在提示词中提出要求，不承诺无法控制的尺寸或把插值放大当作新增细节。
+- Both the complete sheet and each panel have a portrait **9:16** ratio. Overlay thin white divider lines at **50%** of the sheet's width and height. All four panels have equal dimensions, with no gutters, outer frame, or extra margins. Keep the figure within each panel.
+- Use the highest native resolution and quality the tool actually supports. If corresponding controls are unavailable, express the requirements in the prompt. Do not promise dimensions you cannot control or describe interpolated upscaling as added detail.
 
-| 位置 | 默认标签 | 视角与裁切 |
+| Position | Default label | View and framing |
 | --- | --- | --- |
-| 左上 | FACE FRONT | 正面，完整头顶至肚脐附近，保留肩膀和可见上臂。 |
-| 右上 | FACE SIDE | 45° 前侧，裁切和尺度与左上一致；鼻尖朝画面左侧的中央分隔线，后脑朝右，人物自身左脸更明显，头和躯干同向，双眼可见。 |
-| 左下 | BODY FRONT | 正面直立，视线朝相机，完整保留头、双臂、手、双腿和鞋。 |
-| 右下 | BODY BACK | 头和躯干直接背向相机，不回头、不露脸，完整保留头、双臂、手、双腿和鞋。 |
+| Top left | FACE FRONT | Front view, from the full crown of the head to around the navel, including shoulders and visible upper arms. |
+| Top right | FACE SIDE | 45-degree front three-quarter view, matching the top-left crop and scale. The nose points toward the central divider on image left, with the back of the head toward image right. The subject's own left cheek is more visible; head and torso face the same direction, with both eyes visible. |
+| Bottom left | BODY FRONT | Standing upright, facing and looking at the camera. Include the entire head, both arms, hands, legs, and shoes. |
+| Bottom right | BODY BACK | Head and torso face directly away from the camera. No head turn or visible face. Include the entire head, both arms, hands, legs, and shoes. |
 
-- 用户指定 90° 真侧面时，右上改为侧面轮廓、单眼可见，删除双眼可见的要求。
-- 半身图允许手和腰以下在画外；全身图保留完整手脚。两张半身图尺度一致，两张全身图尺度和脚底基线一致。
-- 头正、肩平、自然直立，双臂下垂、手在大腿两侧、双脚约髋宽；统一中性灰影棚、柔和光线和自然落地阴影。
-- 每格左上角放对应的小号大写英文无衬线标签，不遮挡人物，不添加其他文字；用户要求无字时取消标签。
+- If the user specifies a true 90-degree profile, use a single-eye profile in the top-right panel and remove the requirement for both eyes to be visible.
+- Half-body views may crop the hands and areas below the waist; full-body views must include complete hands and feet. Match scale between the two half-body views, and match scale and foot baseline between the two full-body views.
+- Keep the head upright, shoulders level, and posture naturally straight, with arms relaxed, hands beside the thighs, and feet roughly hip-width apart. Use a consistent neutral gray studio background, soft light, and natural ground shadows.
+- Place the corresponding small uppercase English sans-serif label in each panel's upper-left corner without covering the figure. Add no other text. Omit labels when the user requests no text.
 
-## 生成与交付
+## Generation and Delivery
 
-1. 将人物、参考图用途及最终成图规格整理成生成提示词，一次生成完整四格图。用户修改规格时，删除冲突的默认要求。
-2. 查看成图，按最终规格核对布局、人物与服装一致性、视角、裁切、姿态、风格和标签。可获得像素尺寸时核对比例；只有预览时只报告目视检查结果。
-3. 发现布局错误且工具支持编辑时，最多对当前成图追加一次定向编辑，保留人物、服装及四格内容，仅修正布局，再次检查。不要拆成四次独立生成或镜像人物来修正朝向。
-4. 展示成图，简短报告已知尺寸及可见问题。身份、服装、视角不符或修正后仍不达标时如实说明；生成被拦截时停止并说明，不连续重试。
+1. Write an English generation prompt covering the character, the role of each reference, and the final output specifications. Generate the complete four-panel sheet in one call. Remove conflicting defaults when the user changes a specification.
+2. Inspect the result against the final specifications: layout, identity and clothing consistency, views, framing, pose, style, and labels. Verify the ratio from pixel dimensions when available; with only a preview, report only visual inspection findings.
+3. If the layout is wrong and editing is supported, make at most one targeted edit to the current sheet. Preserve the character, clothing, and all four panels' content while correcting only the layout, then inspect again. Do not split the task into four independent generations or mirror the person to correct orientation.
+4. Show the image and briefly report known dimensions and visible issues. Disclose identity, clothing, or view mismatches and any remaining problems after correction. If generation is blocked, stop and explain rather than repeatedly retrying.
