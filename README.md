@@ -1,25 +1,7 @@
-# Four-Panel Character Reference
+# four-panel-reference-skill
 
-A portable skill for generating four views of the same character. The instructions in [SKILL.md](SKILL.md), generation prompts, metadata, documentation, and tooling use English. Requires image generation and, when using reference images, image input support.
+A portable Agent Skill for creating a 2x2 reference sheet of one person: front and three-quarter upper-body views, plus front and back full-body views.
 
-## Installation and Usage
+Load [SKILL.md](SKILL.md) from the repository root using your agent's skill support. Provide reference images or a character description. Requires image generation and, when references are supplied, image input support. All skill instructions and generation prompts are in English.
 
-`SKILL.md` lives at the repository root. Import `four-panel-reference-skill/` using your tool's skill installation mechanism.
-
-Provide a reference image or character description and ask your tool to use `four-panel-reference-skill`. Installation paths and invocation syntax depend on the tool. See the [Agent Skills specification](https://agentskills.io/specification) for the file format.
-
-## Development
-
-Run from the repository root:
-
-```text
-pnpm install --frozen-lockfile
-pnpm test
-pnpm build
-```
-
-The build writes `dist/four-panel-reference-skill-<version>.zip`, using the version from `package.json`. The archive contains only `SKILL.md` and `LICENSE` under `four-panel-reference-skill/`.
-
-## License
-
-[MIT](LICENSE).
+License: [MIT](LICENSE).
