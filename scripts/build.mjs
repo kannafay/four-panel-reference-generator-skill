@@ -10,10 +10,10 @@ if (typeof version !== 'string' || !/^\d+\.\d+\.\d+(?:-[\w.-]+)?(?:\+[\w.-]+)?$/
   throw new Error('package.json 必须包含有效的版本号');
 }
 const archivePath = join(root, 'dist', `${packageName}-${version}.zip`);
-const entries = {};
-for (const path of ['SKILL.md', 'LICENSE']) {
-  entries[`${skillName}/${path}`] = await readFile(join(root, path));
-}
+const entries = {
+  [`${skillName}/SKILL.md`]: await readFile(join(root, skillName, 'SKILL.md')),
+  [`${skillName}/LICENSE`]: await readFile(join(root, 'LICENSE')),
+};
 
 const archive = zipSync(entries, {
   level: 9,

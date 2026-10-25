@@ -1,18 +1,18 @@
 # 人物四格参考图
 
-生成同一人物的四视角参考图，具体规则见[技能说明](SKILL.md)。
+生成同一人物四视角参考图的通用技能，具体规则见[技能说明](人物四格参考图/SKILL.md)。使用时需要图像生成能力，有参考图时还需支持图像输入。
 
 ## 安装与使用
 
-下载仓库，将包含 `SKILL.md` 的目录放入 `~/.agents/skills/人物四格参考图/`。Windows 对应位置为 `%USERPROFILE%\.agents\skills\人物四格参考图\`。
+将仓库中的 `人物四格参考图/` 目录按所用工具的方式导入或放入技能目录。
 
-附上人物参考图并输入 `$人物四格参考图`，也可直接描述人物；若技能未出现，重新打开 Codex。安装说明见 [OpenAI 官方文档](https://learn.chatgpt.com/docs/build-skills)。
+附上参考图或描述人物，要求使用“人物四格参考图”技能。具体安装位置和调用方式以所用工具为准，文件格式见[通用技能规范](https://agentskills.io/specification)。
 
-## 构建与测试
+## 维护与打包
 
 在仓库目录运行：
 
-```powershell
+```text
 pnpm install --frozen-lockfile
 pnpm test
 pnpm build

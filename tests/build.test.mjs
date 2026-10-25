@@ -26,7 +26,7 @@ test('构建带版本号和中文技能目录的压缩包，仅包含发布文�
   for (const path of files) {
     assert.deepEqual(
       Buffer.from(entries[`${skillName}/${path}`]),
-      await readFile(join(root, path)),
+      await readFile(path === 'SKILL.md' ? join(root, skillName, path) : join(root, path)),
     );
   }
 
