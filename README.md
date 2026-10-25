@@ -4,9 +4,9 @@ A portable skill for generating four views of the same character. The instructio
 
 ## Installation and Usage
 
-`SKILL.md` lives at the repository root. Import `four-panel-reference-generator-skill/` using your tool's skill installation mechanism.
+`SKILL.md` lives at the repository root. Import `four-panel-reference-skill/` using your tool's skill installation mechanism.
 
-Provide a reference image or character description and ask your tool to use `four-panel-reference-generator-skill`. Installation paths and invocation syntax depend on the tool. See the [Agent Skills specification](https://agentskills.io/specification) for the file format.
+Provide a reference image or character description and ask your tool to use `four-panel-reference-skill`. Installation paths and invocation syntax depend on the tool. See the [Agent Skills specification](https://agentskills.io/specification) for the file format.
 
 ## Development
 
@@ -18,7 +18,7 @@ pnpm test
 pnpm build
 ```
 
-The build writes `dist/four-panel-reference-generator-skill-<version>.zip`, using the version from `package.json`. The archive contains only `SKILL.md` and `LICENSE` under `four-panel-reference-generator-skill/`.
+The build writes `dist/four-panel-reference-skill-<version>.zip`, using the version from `package.json`. The archive contains only `SKILL.md` and `LICENSE` under `four-panel-reference-skill/`.
 
 ## License
 

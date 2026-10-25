@@ -1,5 +1,5 @@
 ---
-name: four-panel-reference-generator-skill
+name: four-panel-reference-skill
 description: "Create a 2x2 reference sheet of one person for character design and image or video assets. Use for character views, not narrative storyboards or object turnarounds."
 ---
 
