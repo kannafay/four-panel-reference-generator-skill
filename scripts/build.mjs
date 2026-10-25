@@ -6,7 +6,7 @@ import { zipSync } from 'fflate';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const { name: packageName, version } = JSON.parse(await readFile(join(root, 'package.json'), 'utf8'));
 if (typeof version !== 'string' || !/^\d+\.\d+\.\d+(?:-[\w.-]+)?(?:\+[\w.-]+)?$/.test(version)) {
-  throw new Error('package.json 必须包含有效的版本号');
+  throw new Error('package.json must contain a valid version number');
 }
 const archivePath = join(root, 'dist', `${packageName}-${version}.zip`);
 const entries = {
@@ -21,4 +21,4 @@ const archive = zipSync(entries, {
 
 await mkdir(join(root, 'dist'), { recursive: true });
 await writeFile(archivePath, archive);
-console.log(`已生成压缩包：${archivePath}`);
+console.log(`Built ${archivePath}`);

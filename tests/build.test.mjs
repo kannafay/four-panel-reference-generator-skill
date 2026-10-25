@@ -12,7 +12,7 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const { name: packageName, version } = JSON.parse(await readFile(join(root, 'package.json'), 'utf8'));
 const files = ['SKILL.md', 'LICENSE'];
 
-test('从仓库根目录构建带版本号和英文目录的压缩包，仅包含发布文件且重复构建结果一致', async () => {
+test('builds a reproducible versioned archive from root files under the package name', async () => {
   const archivePath = join(root, 'dist', `${packageName}-${version}.zip`);
   await rm(archivePath, { force: true });
   await execFileAsync(process.execPath, ['scripts/build.mjs'], { cwd: root });
