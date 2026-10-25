@@ -4,6 +4,8 @@ A portable Agent Skill for creating a 2x2 reference sheet of one person: front a
 
 Load [SKILL.md](SKILL.md) from the repository root using your agent's skill support. Provide reference images or a character description. Requires image generation and, when references are supplied, image input support. All skill instructions and generation prompts are in English.
 
+Each request allows at most one generation or edit call for one complete sheet. Inspection reports any remaining issues; further generation or edits require an explicit follow-up request.
+
 ## Packaging
 
 Run from the repository root:

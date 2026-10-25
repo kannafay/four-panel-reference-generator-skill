@@ -31,7 +31,7 @@ Use an image generation tool to present the same person in one 2x2 reference she
 
 ## Generation and Delivery
 
-- Write an English prompt covering the character, reference roles, and final specifications. Generate the entire sheet in one call at the highest supported native quality and resolution. Request unavailable controls in the prompt without promising exact dimensions or extra detail from upscaling.
-- Inspect layout, identity, outfit, views, framing, pose, style, and labels. Check the ratio from pixel dimensions when available; otherwise report only visual findings.
-- If editing is supported, correct layout errors with at most one targeted edit, preserving character, clothing, and panel content, then recheck. Do not generate panels separately or mirror the character to fix direction.
-- Show the image with known dimensions and remaining issues. Stop and explain if generation is blocked.
+- Make at most one image-generation or image-edit call per user request, requesting exactly one finished image containing all four panels. For an explicit follow-up revision, edit the existing sheet in that request's single call when editing is supported. Do not generate panels separately or mirror the character to fix direction.
+- Write an English prompt covering the character, reference roles, and final specifications. Use the highest supported native quality and resolution. Request unavailable controls in the prompt without promising exact dimensions or extra detail from upscaling.
+- Inspect layout, identity, outfit, views, framing, pose, style, and labels. Check the ratio from pixel dimensions when available; otherwise report only visual findings. Inspection is read-only: report defects and wait for an explicit user request before any further generation or edit, including layout, label, or resolution fixes.
+- Show the returned image using the existing tool result or image asset, with known dimensions and remaining issues. Do not call generation again to deliver the image or provide alternatives. If generation fails or is blocked, stop and explain without an automatic retry.
