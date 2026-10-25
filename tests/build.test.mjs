@@ -9,8 +9,8 @@ import { unzipSync } from 'fflate';
 
 const execFileAsync = promisify(execFile);
 const root = fileURLToPath(new URL('../', import.meta.url));
-const skillName = 'four-panel-reference-generator';
-const { version } = JSON.parse(await readFile(join(root, 'package.json'), 'utf8'));
+const skillName = '人物四格参考图';
+const { name: packageName, version } = JSON.parse(await readFile(join(root, 'package.json'), 'utf8'));
 const files = [
   'SKILL.md',
   'agents/openai.yaml',
@@ -19,8 +19,8 @@ const files = [
   'LICENSE',
 ];
 
-test('构建带版本号的技能压缩包，仅包含发布文件且重复构建结果一致', async () => {
-  const archivePath = join(root, 'dist', `${skillName}-skill-${version}.zip`);
+test('构建带版本号和中文技能目录的压缩包，仅包含发布文件且重复构建结果一致', async () => {
+  const archivePath = join(root, 'dist', `${packageName}-${version}.zip`);
   await rm(archivePath, { force: true });
   await execFileAsync(process.execPath, ['scripts/build.mjs'], { cwd: root });
 

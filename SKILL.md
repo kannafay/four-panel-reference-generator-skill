@@ -1,5 +1,5 @@
 ---
-name: four-panel-reference-generator
+name: 人物四格参考图
 description: "生成同一人物的四格视角参考图，用于角色设定及图像、视频人物素材，不用于剧情分镜或物品多视图。"
 ---
 

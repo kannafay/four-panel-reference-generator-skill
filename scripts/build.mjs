@@ -4,12 +4,12 @@ import { fileURLToPath } from 'node:url';
 import { zipSync } from 'fflate';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-const skillName = 'four-panel-reference-generator';
-const { version } = JSON.parse(await readFile(join(root, 'package.json'), 'utf8'));
+const skillName = '人物四格参考图';
+const { name: packageName, version } = JSON.parse(await readFile(join(root, 'package.json'), 'utf8'));
 if (typeof version !== 'string' || !/^\d+\.\d+\.\d+(?:-[\w.-]+)?(?:\+[\w.-]+)?$/.test(version)) {
   throw new Error('package.json 必须包含有效的版本号');
 }
-const archivePath = join(root, 'dist', `${skillName}-skill-${version}.zip`);
+const archivePath = join(root, 'dist', `${packageName}-${version}.zip`);
 const files = [
   'SKILL.md',
   'agents/openai.yaml',
