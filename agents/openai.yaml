@@ -1,6 +1,6 @@
 interface:
-  display_name: "人物四格参考图生成器"
-  short_description: "同一人物四视角，优先高清生成并检查四格等高与9:16比例"
+  display_name: "人物四格参考图"
+  short_description: "生成同一人物的四视角参考图，统一人物外观、中文标签和等格布局"
   icon_small: "./assets/icon.svg"
   icon_large: "./assets/icon.svg"
 policy:

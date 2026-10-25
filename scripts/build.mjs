@@ -7,7 +7,7 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const skillName = 'four-panel-reference-generator';
 const { version } = JSON.parse(await readFile(join(root, 'package.json'), 'utf8'));
 if (typeof version !== 'string' || !/^\d+\.\d+\.\d+(?:-[\w.-]+)?(?:\+[\w.-]+)?$/.test(version)) {
-  throw new Error('package.json must contain a valid version number');
+  throw new Error('package.json 必须包含有效的版本号');
 }
 const archivePath = join(root, 'dist', `${skillName}-skill-${version}.zip`);
 const files = [
@@ -34,4 +34,4 @@ const archive = zipSync(entries, {
 
 await mkdir(dirname(archivePath), { recursive: true });
 await writeFile(archivePath, archive);
-console.log(`Built ${archivePath}`);
+console.log(`已生成压缩包：${archivePath}`);

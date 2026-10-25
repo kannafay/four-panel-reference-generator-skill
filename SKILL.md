@@ -1,96 +1,38 @@
 ---
 name: four-panel-reference-generator
-description: "Generate one 2x2 person reference sheet with four consistent character views and equal portrait 9:16 cells. Use an available image generation tool for character reference images or image/video character assets, not narrative storyboards or object multi-view sheets."
+description: "生成同一人物的四格视角参考图，用于角色设定及图像、视频人物素材，不用于剧情分镜或物品多视图。"
 ---
 
-# 人物四格参考图生成器
+# 人物四格参考图
 
-将同一个人物重新构图为**一张包含四个等大格子的参考图**，默认上排半身、下排全身。用图像生成工具制作成图，检查布局和人物内容，必要时对成图进行一次定向修正。这里的“四分镜”指角色视角参考，不编排故事情节。
+使用图像生成工具，将同一个人物呈现为一张二行二列的参考图。用户明确要求优先于以下默认规则。
 
-## 输入与人物一致性
+## 人物与参考图
 
-- 用户提供参考图且未要求纯文字生成时，先查看每张图，并将它们作为视觉参考传入图像生成工具。**人物坐姿、歪头、动态动作或复杂背景都不是丢弃参考图的理由。** 用提示词说明只保留人物身份、体型、发型、服装和配饰，重新安排姿态、机位与背景。
-- 多张图属于同一个人物时，优先用清晰面部图确定身份，用完整服装图补充穿着。人物身份或服装版本明显冲突、且用户未指定选择时，先问清楚，不能混合成新人物。
-- 只有没有人物参考图、或用户明确要求纯文字生成时，才使用文字路线。按用户描述建立一个固定人物，四格复用同一套外观。
-- 看不到的服装背面、下装或鞋子可以保守补全，四格保持一致；不要把补全细节宣称为原图事实。
-- 默认延续参考人物的照片、插画或 3D 表现方式；纯文字输入默认摄影效果。用户指定的风格和换装优先。
-- 本地图片先查看再使用。按实际工具接口附带参考图；若接口提供 `referenced_image_paths` 和 `num_last_images_to_include`，只选一种，且包含所有需要的参考图。不能在提示词里写“保持参考人物”却没有实际附图。必要参考图不可访问时，请用户重新附上。
+- 有参考图时，先查看并随生成调用附上，保留人物身份、体型、发型、服装、配饰及非对称细节，重新安排姿态与背景；不要因原图姿势或背景复杂而改用纯文字生成。无参考图或用户明确要求纯文字生成时，按文字描述固定人物外观。
+- 多张参考图互补使用；身份或服装版本冲突且用户未指定时，先确认选择。必要参考图无法访问时，请用户重新附上。
+- 未展示的背面、下装或鞋子可保守补全，四格保持一致，不将补全细节当作原图事实。默认延续参考图风格，纯文字输入默认摄影效果。
 
-## 最终规格
+## 默认成图
 
-先合并用户要求和默认值，得到**一份最终规格**。用户指定的视角、位置、方向、裁切、比例、分隔线、风格、背景和标签覆盖对应默认值；提示词与验收都使用最终规格，不能同时保留互相冲突的要求。
+- 整图与每格均为竖版 **9:16**。在整图宽、高各 **50%** 处叠加细白色十字线，四格等宽等高，无间隙、外框或额外留白；人物不跨格。
+- 选择工具实际支持的最高原生分辨率和画质；没有对应参数时，在提示词中提出要求，不承诺无法控制的尺寸或把插值放大当作新增细节。
 
-标准目标是**整图和四个分镜都为竖版 9:16**。把白色十字线放在整图宽、高各 50% 的位置，使四格等宽、等高；各格都完整容纳规定的半身或全身视图。默认优先争取当前工具支持的**最高原生分辨率和最高生成质量**，不默认限制为 1080×1920。用户明确指定尺寸时按用户要求生成。
-
-工具提供尺寸、质量或原生高清选项时，按真实接口选择支持目标比例的最高档；没有这些选项时，在提示词中要求最高原生画质，不虚构参数或承诺工具无法控制的分辨率。不要为了增大文件尺寸反复插值放大，也不要把放大后的尺寸当作新增真实细节。
-
-使用**细白色十字分隔线**，居中叠加在格子边界，不额外插入白色间距，不加外框或额外留白。每格人物放在本格内部，不跨越分隔线。
-
-| 位置 | 默认标签 | 默认视角与裁切 |
+| 位置 | 中文标签 | 视角与裁切 |
 | --- | --- | --- |
-| 左上 | `FACE FRONT` | 正面半身，从完整头顶到肚脐附近；肩膀和可见上臂完整。 |
-| 右上 | `FACE SIDE` | 45° 前侧半身，与左上裁切、尺度一致；鼻尖朝成图左侧、指向本格左边的中央分隔线，后脑朝右，人物自身的左脸更明显；头和躯干同向，双眼可见。 |
-| 左下 | `BODY FRONT` | 正面全身，完整头顶至鞋底；自然直立，视线朝相机。 |
-| 右下 | `BODY BACK` | 正背面全身，完整头顶至鞋底；头和躯干直接背向相机，不回头，不露出脸。 |
+| 左上 | 正面半身 | 正面，完整头顶至肚脐附近，保留肩膀和可见上臂。 |
+| 右上 | 侧面半身 | 45° 前侧，裁切和尺度与左上一致；鼻尖朝画面左侧的中央分隔线，后脑朝右，人物自身左脸更明显，头和躯干同向，双眼可见。 |
+| 左下 | 正面全身 | 正面直立，视线朝相机，完整保留头、双臂、手、双腿和鞋。 |
+| 右下 | 背面全身 | 头和躯干直接背向相机，不回头、不露脸，完整保留头、双臂、手、双腿和鞋。 |
 
-`FACE SIDE` 默认是 45° 前侧视角；用户要求 90° 真侧面时，改用侧面轮廓和单眼可见，不再要求双眼可见。
+- 用户指定 90° 真侧面时，右上改为侧面轮廓、单眼可见，删除双眼可见的要求。
+- 半身图允许手和腰以下在画外；全身图保留完整手脚。两张半身图尺度一致，两张全身图尺度和脚底基线一致。
+- 头正、肩平、自然直立，双臂下垂、手在大腿两侧、双脚约髋宽；统一中性灰影棚、柔和光线和自然落地阴影。
+- 每格左上角放对应的小号中文无衬线标签，不遮挡人物，不添加其他文字；用户要求无字时取消标签。
 
-- **裁切分开约束：** 上排保留头顶、肩膀和可见上臂，允许腰以下、手和鞋在画面外；下排必须完整保留头、双臂、手、双腿和鞋。不要为了让上排露出鞋而把半身图缩成全身图。
-- 两张半身图的人物尺度一致；两张全身图的人物尺度、脚底基线一致。四格指向同一个人物，不要求半身与全身采用同一缩放尺度。
-- 默认中性直立：头正、肩平、重心自然，双臂下垂，手放松在大腿两侧，双脚约髋宽。避免歪头、交叉腿、扭腰和回眸。不要用“A-Pose”替代自然下垂的手臂。
-- 默认背景为统一的中性灰影棚、柔和均匀光线和自然落地阴影。参考图的场景与姿势不迁移；用户指定的背景、姿势或光照优先。
-- 默认在每格左上角放对应的小号大写无衬线标签，不遮挡人物。用户要求无字时取消全部标签。
+## 生成与交付
 
-## 生成提示词
-
-使用当前环境可用的图像生成工具，默认一次调用生成含四个视图的完整成图，保持四格人物和服装一致。要求工具同时绘制清晰的细白色十字线和四个准确的英文标签，不添加其他文字。
-
-把人物、服装、四个视角、裁切、姿态和等格布局写进实际工具提示词。可以使用以下结构，填入最终选择；不要把占位符直接发送给工具：
-
-```text
-Create ONE finished 2x2 character reference sheet, with the same person in four views.
-Canvas: {final sheet aspect ratio}; four cells of EXACTLY equal pixel width and height, each with {final cell aspect ratio}.
-Grid: put the vertical divider at EXACTLY 50% of the canvas width and the horizontal divider at EXACTLY 50% of the canvas height. Top and bottom rows must have identical heights.
-Resolution and quality: use the highest native resolution and best image quality available in this tool; preserve fine facial features, hair strands, fabric textures and outfit details in all four cells.
-Dividers: thin WHITE vertical and horizontal lines on those exact centers; no gutters or outer frame.
-Labels: {place the final labels in the upper-left corner of their respective cells, or omit all labels if requested}; no other text.
-Subject: {identity, hair, body proportions, clothing and accessories}.
-References: {the role of each attached image, if any}.
-Preserve the same identity, hairstyle, outfit and asymmetric details in all four cells.
-Recompose the subject according to the final views, pose and backdrop.
-
-TOP LEFT: {final view, crop and direction}.
-TOP RIGHT: {final view, crop and direction}.
-BOTTOM LEFT: {final view, crop and direction}.
-BOTTOM RIGHT: {final view, crop and direction}.
-
-Pose: {final pose}.
-Style and background: {final medium, backdrop and lighting}.
-Framing: {separate portrait and full-body requirements; matching scale within each pair}.
-Leave a little background margin around each subject. Do not crop the required body parts or let the subject cross a divider.
-```
-
-默认右上视角同时写明成图方向和人物自身的脸侧：`45-degree front three-quarter view facing image LEFT, nose toward the center divider at this cell's LEFT edge, back of the head toward the RIGHT edge; the subject's own LEFT cheek is more visible; head and torso face the same way, both eyes visible.` 不单独用容易混淆的“左侧脸”或“相机向右”指定朝向。
-
-纯文字路线删去参考图语句。有参考图的路线必须附图。用户自定义规格时替换相应描述，并删除失效的默认方向、裁切、比例、姿态、背景和标签要求。
-
-## 等格检查与修正
-
-生成后查看完整图片，检查水平白线是否穿过**整图高度的一半**，上下两排是否等高；检查竖线是否居中、四格是否等大，以及人物、视角和标签是否正确。工具提供实际像素尺寸时，核对整图与各格的 9:16 比例；若只有视觉预览，只能报告目视检查结果，不能宣称像素级精确。
-
-若分隔线偏移、上下格不等高或整体比例错误，使用当前图像生成工具对**刚生成的成图**做一次定向编辑：要求保持同一人物、四格顺序、服装和标签，仅重排为宽高各 50% 分割的等格 9:16 成图。编辑后再次检查全部要求。不要把四格分别生成为四个人，也不要镜像错误朝向的格子，以免反转发缝、图案或配饰。
-
-## 检查与交付
-
-查看排版后的成品，按最终规格检查：
-
-1. 一张图、四个等大格子，人物不跨格；标准版整图和每格均为竖版 9:16，细白色十字线居中。用户明确改动规格时按其要求检查。
-2. 四格人物身份、发型、服装颜色、配饰及非对称细节一致。
-3. 四格视角正确；默认右上鼻尖朝成图左侧、人物自身左脸更明显，右下为直接背面。
-4. 半身与全身分别满足裁切要求，配对尺度一致，全身图不缺手脚。
-5. 姿态、背景、风格和标签符合最终规格。
-6. 生成工具有可控选项时已选择最高原生分辨率和质量，没有时已在实际提示词中要求最高原生画质；如能获知实际像素尺寸，按实报告。
-
-默认一次生成；只有发现布局错误时，才最多追加一次针对成图的编辑。编辑仍不能满足规格，或出现人物身份、服装、视角等内容问题时，如实指出未达标之处，不把不合格成图称为合格参考图。生成工具拦截时报告具体问题；不要无限重试。
-
-展示生成图，并简短报告实际可知的像素尺寸和可见问题；工具没有可控高清选项时，不把提示词请求宣称为已经保证最高原生分辨率。
+1. 将人物、参考图用途及最终成图规格整理成中文提示词，一次生成完整四格图。用户修改规格时，删除冲突的默认要求。
+2. 查看成图，按最终规格核对布局、人物与服装一致性、视角、裁切、姿态、风格和标签。可获得像素尺寸时核对比例；只有预览时只报告目视检查结果。
+3. 发现布局错误时，最多对当前成图追加一次定向编辑，保留人物、服装及四格内容，仅修正布局，再次检查。不要拆成四次独立生成或镜像人物来修正朝向。
+4. 展示成图，简短报告已知尺寸及可见问题。身份、服装、视角不符或修正后仍不达标时如实说明；生成被拦截时停止并说明，不连续重试。

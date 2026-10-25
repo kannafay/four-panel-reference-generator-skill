@@ -19,7 +19,7 @@ const files = [
   'LICENSE',
 ];
 
-test('build creates a versioned installable ZIP with only the published skill files', async () => {
+test('构建带版本号的技能压缩包，仅包含发布文件且重复构建结果一致', async () => {
   const archivePath = join(root, 'dist', `${skillName}-skill-${version}.zip`);
   await rm(archivePath, { force: true });
   await execFileAsync(process.execPath, ['scripts/build.mjs'], { cwd: root });
