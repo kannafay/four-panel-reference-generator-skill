@@ -1,6 +1,6 @@
 # 人物四格参考图
 
-生成同一人物的正面半身、侧面半身、正面全身和背面全身参考图。默认中文标签、灰色影棚和白色十字线，整图与每格均为竖版 9:16。详细规则见[技能说明](SKILL.md)。
+生成同一人物的四视角参考图，具体规则见[技能说明](SKILL.md)。
 
 ## 安装与使用
 
@@ -18,7 +18,7 @@ pnpm test
 pnpm build
 ```
 
-压缩包输出到 `dist/four-panel-reference-generator-skill-<版本号>.zip`，版本号取自 `package.json`。解压后将 `人物四格参考图/` 放入技能目录即可；压缩包仅含技能、说明和许可证。
+压缩包输出到 `dist/four-panel-reference-generator-skill-<版本号>.zip`，版本号取自 `package.json`。解压后将 `人物四格参考图/` 放入技能目录即可，其中仅含 `SKILL.md` 和 `LICENSE`。
 
 ## 许可
 
