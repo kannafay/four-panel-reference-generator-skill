@@ -6,6 +6,8 @@ Load [SKILL.md](SKILL.md) from the repository root using your agent's skill supp
 
 Each request allows at most one generation or edit call for one complete sheet. Inspection reports any remaining issues; further generation or edits require an explicit follow-up request.
 
+The prompt specifies front and back garment construction separately, keeping openings, lining exposure, layers, and asymmetric details consistent with the references and camera angle.
+
 ## Packaging
 
 Run from the repository root:

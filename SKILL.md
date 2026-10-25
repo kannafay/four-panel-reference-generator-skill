@@ -13,6 +13,12 @@ Use an image generation tool to present the same person in one 2x2 reference she
 - Use compatible references together; clarify conflicting identities or outfits and request inaccessible essential references. Infer unseen details conservatively and consistently, without claiming they were visible in the source.
 - Preserve the reference style. With no reference or an explicit text-only request, follow the description and default to photographic rendering.
 
+## Clothing Across Views
+
+- Treat the outfit as one three-dimensional construction rotated with the person. Establish its layers, outer fabric, lining, seams, openings, fastenings, and hem shape before writing the prompt; keep these consistent in the two upper-body views and both full-body views.
+- State front and back visibility separately in the actual prompt. Front lapels, fastenings, and open front edges belong on the front; the back must show the garment's rear construction and obey occlusion. For example, an open-front coat does not imply an equally open back: unless a rear opening is shown or requested, infer a continuous outer-fabric back, with lining visible only where a fold, hem, or supported vent exposes it. Preserve rear slits, cutouts, and other unusual construction when supported by the reference or user request.
+- Keep the designed hem lengths, belt height, sleeves, cuffs, trim, fabric colors, and layer order consistent under rotation. Anchor asymmetric details to the wearer's anatomical side. Do not copy the front opening or lining pattern onto the back merely to make the panels look similar.
+
 ## Layout
 
 - Both the sheet and each cell are portrait **9:16**. Divide at **50%** width and height with thin white lines. Use four equal cells, no gutters, outer frame, extra margins, or figures crossing cells.
@@ -32,6 +38,6 @@ Use an image generation tool to present the same person in one 2x2 reference she
 ## Generation and Delivery
 
 - Make at most one image-generation or image-edit call per user request, requesting exactly one finished image containing all four panels. For an explicit follow-up revision, edit the existing sheet in that request's single call when editing is supported. Do not generate panels separately or mirror the character to fix direction.
-- Write an English prompt covering the character, reference roles, and final specifications. Use the highest supported native quality and resolution. Request unavailable controls in the prompt without promising exact dimensions or extra detail from upscaling.
-- Inspect layout, identity, outfit, views, framing, pose, style, and labels. Check the ratio from pixel dimensions when available; otherwise report only visual findings. Inspection is read-only: report defects and wait for an explicit user request before any further generation or edit, including layout, label, or resolution fixes.
+- Write an English prompt covering the character, reference roles, final specifications, and explicit front/back garment construction and visibility. A generic "same outfit" instruction is insufficient. Use the highest supported native quality and resolution. Request unavailable controls in the prompt without promising exact dimensions or extra detail from upscaling.
+- Inspect layout, identity, outfit, views, framing, pose, style, and labels. Compare front and back garment construction, openings, lining exposure, and occlusion as well as colors and accessories. Check the ratio from pixel dimensions when available; otherwise report only visual findings. Inspection is read-only: report defects and wait for an explicit user request before any further generation or edit, including layout, label, or resolution fixes.
 - Show the returned image using the existing tool result or image asset, with known dimensions and remaining issues. Do not call generation again to deliver the image or provide alternatives. If generation fails or is blocked, stop and explain without an automatic retry.
